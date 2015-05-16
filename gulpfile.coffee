@@ -7,12 +7,17 @@ path = require 'path'
 sources =
   sass: 'src/assets/_sass/*.scss'
   coffee: 'src/assets/_coffee/*.coffee'
-  test: 'test/*.coffee'
+  specs: 'test/*.coffee'
 
 destinations =
   css: 'src/assets/css'
   js: 'src/assets/js'
-  test: 'test'
+  specs: 'test'
+
+gulp.task 'watch', ->
+  gulp.watch sources.coffee, ['coffee']
+  gulp.watch sources.sass, ['compass']
+  gulp.watch sources.specs, ['specs']
 
 gulp.task 'coffee', ->
   gulp.src sources.coffee
@@ -27,12 +32,9 @@ gulp.task 'compass', ->
       sass: '_sass'
     )
 
-gulp.task 'test', ->
-  gulp.src sources.test
+gulp.task 'specs', ->
+  gulp.src sources.specs
     .pipe coffee().on 'error', gulpUtil.log
-    .pipe gulp.dest destinations.test
+    .pipe gulp.dest destinations.specs
 
-gulp.task 'default', ->
-  gulp.watch sources.coffee, ['coffee']
-  gulp.watch sources.sass, ['compass']
-  gulp.watch sources.specs, ['specs']
+gulp.task 'default', ['coffee', 'compass', 'specs', 'watch']
