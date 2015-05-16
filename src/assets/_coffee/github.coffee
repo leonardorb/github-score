@@ -73,7 +73,12 @@ class GitHub
 
   getNumberOfFollowers: ($, cb = ->) ->
     [_$, _cb] = [$, cb]
-    followers = parseInt _$(_$('.vcard-stat-count')[0]).text()
+    followers = _$(_$('.vcard-stat-count')[0]).text()
+    if followers.indexOf('k') is -1
+      followers = parseInt followers
+    else
+      numberRegex = /(.*)k/
+      followers = (followers.match(numberRegex)[1])*1000
     _cb followers
 
   getNumberOfContributions: ($, cb = ->) ->
@@ -96,7 +101,10 @@ class GitHub
 
   reportLineFollowers: (followers, cb = ->) ->
     [_followers, _cb] = [followers, cb]
-    if _followers > 1 then _followers = _followers + ' followers\n' else _followers = _followers + ' follower\n'
+    if _followers > 1
+      if _followers >= 1000 then _followers = _followers + '~ followers\n' else _followers = _followers + ' followers\n'
+    else
+      _followers = _followers + ' follower\n'
     _cb _followers
 
   reportLineContributions: (contributions, cb = ->) ->
