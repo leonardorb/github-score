@@ -51,7 +51,7 @@ class GitHub
               userData.score = _score
               index++
               if index is users.length
-                usersData = _.sortBy(usersData, 'score').reverse()
+                usersData = (_.sortBy usersData, (user) -> parseFloat user.score).reverse()
                 _cb usersData
               else
                 self.generateUsersData index, _users, _cb, usersData
@@ -61,7 +61,7 @@ class GitHub
     followersScore = +(@followersImportance * _user.followers).toFixed 2
     contributionsScore = +(@contributionsImportance * _user.contributions).toFixed 2
     streakScore = +(@streakImportance * _user.streak).toFixed 2
-    fullScore = (followersScore + contributionsScore + streakScore).toFixed 2
+    fullScore = (parseFloat(followersScore + contributionsScore + streakScore)).toFixed 2
     _cb fullScore
 
   getURLData: (user, cb = ->) ->
