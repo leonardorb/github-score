@@ -65,11 +65,14 @@ class GitHub
     _cb fullScore
 
   getURLData: (user, cb = ->) ->
-    [_user, _cb] = [user, cb]
+    [self, _user, _cb] = [@, user, cb]
     userPath = @baseURL + '/' + _user
     request userPath, (error, response, body) ->
       $ = cheerio.load body
-      _cb $
+      if $('#parallax_error_text')[0]?
+        console.log "ERROR: user '#{_user}' does not exist on GitHub."
+      else
+        _cb $
 
   getNumberOfFollowers: ($, cb = ->) ->
     [_$, _cb] = [$, cb]
