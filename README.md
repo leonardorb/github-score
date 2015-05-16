@@ -21,7 +21,7 @@ What's your GitHub score?
     $ node src/assets/js/score.js leonardorb hugw tspaulino suissa zenorocha ebidel
 
 
-![](http://d.pr/i/1jXXj+)
+![](http://d.pr/i/18T1u+)
 
 
 ## Running Tests
