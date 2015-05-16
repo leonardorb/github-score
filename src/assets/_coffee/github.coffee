@@ -14,8 +14,9 @@ class GitHub
   generateScoreReport: (users, cb) ->
     [self, _users, _cb] = [@, users, cb]
     @generateUsersData 0, _users, (usersData) ->
-      _.each usersData, (user) ->
-        self.reportLineUsername user.username, (lineUsername) ->
+      _.each usersData, (user, count) ->
+        _count = count + 1
+        self.reportLineUsername user.username, _count, (lineUsername) ->
           _lineUsername = lineUsername
           self.reportLineFollowers user.followers, (lineFollowers) ->
             _lineFollowers = lineFollowers
@@ -112,9 +113,9 @@ class GitHub
     streak = parseInt streakText.match(numberRegex)[0]
     _cb streak
 
-  reportLineUsername: (username, cb = ->) ->
+  reportLineUsername: (username, count, cb = ->) ->
     [_username, _cb] = [username, cb]
-    _cb '=> ' + _username.toUpperCase() + '\n'
+    _cb '[' + count + '] - ' + _username.toUpperCase() + '\n'
 
   reportLineFollowers: (followers, cb = ->) ->
     [_followers, _cb] = [followers, cb]
