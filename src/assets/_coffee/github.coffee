@@ -102,7 +102,7 @@ class GitHub
   reportLineFollowers: (followers, cb = ->) ->
     [_followers, _cb] = [followers, cb]
     if _followers > 1
-      if _followers >= 1000 then _followers = _followers + '~ followers\n' else _followers = _followers + ' followers\n'
+      if _followers >= 1000 then _followers = _followers + '+ followers\n' else _followers = _followers + ' followers\n'
     else
       _followers = _followers + ' follower\n'
     _cb _followers
