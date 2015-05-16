@@ -1,0 +1,15 @@
+{
+  "name": "name-of-the-project",
+  "version": "0.0.1",
+  "description": "Project description.",
+  "author": "Author <email@author.com>",
+  "scripts": {
+    "script": "instruction"
+  },
+  "dependencies": {
+    "dependency": "0.0.1"
+  },
+  "devDependencies": {
+    "dependency": "0.0.1"
+  }
+}
