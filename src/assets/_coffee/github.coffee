@@ -61,7 +61,7 @@ class GitHub
     followersScore = +(@followersImportance * _user.followers).toFixed 2
     contributionsScore = +(@contributionsImportance * _user.contributions).toFixed 2
     streakScore = +(@streakImportance * _user.streak).toFixed 2
-    fullScore = followersScore + contributionsScore + streakScore
+    fullScore = (followersScore + contributionsScore + streakScore).toFixed 2
     _cb fullScore
 
   getURLData: (user, cb = ->) ->
