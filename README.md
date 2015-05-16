@@ -3,11 +3,30 @@ What's your GitHub score?
 
 ## How to use it
 
-To be written.
+### Install dependencies
+
+    $ npm install -g gulp
+    $ npm install
+
+### Compile your gulpfile.coffee
+
+    $ coffee -bwc --no-header gulpfile.coffee
+
+### Run gulp
+
+    $ gulp
+
+### Get your score!
+
+    $ node src/assets/js/score.js leonardorb hugw tspaulino dpsxp
+
+
+![](http://d.pr/i/CQ3j+)
+
 
 ## Running Tests
 
-    $ npm test
+    TODO
 
 ## Contributors
 
