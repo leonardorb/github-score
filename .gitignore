@@ -1,0 +1,5 @@
+/node_modules
+/src/assets/components
+.npm-debug.log
+/src/assets/.sass-cache
+gulp.js
