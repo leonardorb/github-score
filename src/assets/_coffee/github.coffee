@@ -119,7 +119,7 @@ class GitHub
   reportLineFollowers: (followers, cb = ->) ->
     [_followers, _cb] = [followers, cb]
     if _followers > 1
-      if _followers >= 1000 then _followers = _followers + '+ followers\n' else _followers = _followers + ' followers\n'
+      if _followers >= 1000 then _followers = _followers + '+ followers | ' else _followers = _followers + ' followers | '
     else
       _followers = _followers + ' follower\n'
     _cb _followers
@@ -132,7 +132,7 @@ class GitHub
   reportLineLongestStreak: (longestStreak, cb = ->) ->
     [_longestStreak, _cb] = [longestStreak, cb]
     _preStreak = 'Longest streak: '
-    if _longestStreak > 1 then _longestStreak = _longestStreak + ' days\n' else _longestStreak = _longestStreak + ' day\n'
+    if _longestStreak > 1 then _longestStreak = _longestStreak + ' days | ' else _longestStreak = _longestStreak + ' day | '
     _cb _preStreak + _longestStreak
 
   reportLineCurrentStreak: (currentStreak, cb = ->) ->
