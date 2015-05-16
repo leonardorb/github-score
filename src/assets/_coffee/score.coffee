@@ -4,7 +4,7 @@ _ = require 'lodash'
 gh = new GitHub
 users = process.argv.slice 2
 
-if users.length > 1
+if users.length > 0
   gh.generateScoreReport users, (report) ->
     console.log report
 else
