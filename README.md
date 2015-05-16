@@ -1,14 +1,9 @@
-# Project's Name
-Description of the project.
-**Bacon** ipsum dolor amet jowl fatback landjaeger capicola. Ribeye meatball fatback, kevin boudin jerky drumstick sausage pastrami. Landjaeger **bacon** hamburger ham hock porchetta. Tail meatloaf **bacon** kielbasa brisket, ground round kevin pancetta ball tip corned beef. Pork rump pork loin chuck, landjaeger t-bone corned beef short loin beef. Shank bresaola cow chicken.
+# GitHub Score
+What's your GitHub score?
 
 ## How to use it
 
-### Instruction 1
-**Bacon** ipsum dolor amet jowl fatback landjaeger capicola. Ribeye meatball fatback, kevin boudin jerky drumstick sausage pastrami.
-
-### Instruction 2
-**Bacon** ipsum dolor amet jowl fatback landjaeger capicola. Ribeye meatball fatback, kevin boudin jerky drumstick sausage pastrami.
+To be written.
 
 ## Running Tests
 
@@ -16,8 +11,7 @@ Description of the project.
 
 ## Contributors
 
-- First Contributor's Name ([github](https://github.com)) ([twitter](https://twitter.com))
-- Second Contributor's Name ([github](https://github.com)) ([twitter](https://twitter.com))
+- Leo ([github](https://github.com/leonardorb)) ([twitter](https://twitter.com/leonardorb))
 
 ## How to Contribute
 - Before you open a ticket or send a pull request, `search` for previous discussions about the same feature or issue. Add to the earlier ticket if you find one.
@@ -29,7 +23,7 @@ Description of the project.
 
 **The MIT License (MIT)**
 
-Copyright (c) **YEAR** Creator's Name ([creator's e-mail](mailto:creator@email.com))
+Copyright (c) **2015** Leonardo R. Barbosa ([rb.leonardo@gmail.com](mailto:rb.leonardo@gmail.com))
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

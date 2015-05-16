@@ -1,10 +1,10 @@
 {
-  "name": "name-of-the-project",
+  "name": "GitHubScore",
   "version": "0.0.1",
   "authors": [
-    "Author <email@author.com>"
+    "Leo <rb.leonardo@gmail.com>"
   ],
-  "description": "Project description.",
+  "description": "What's your GitHub score?",
   "license": "MIT",
   "ignore": [
     "**/.*",

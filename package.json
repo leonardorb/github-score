@@ -1,8 +1,8 @@
 {
-  "name": "name-of-the-project",
+  "name": "GitHubScore",
   "version": "0.0.1",
-  "description": "Project description.",
-  "author": "Author <email@author.com>",
+  "description": "What's your GitHub score?",
+  "author": "Leo <rb.leonardo@gmail.com>",
   "scripts": {
     "script": "instruction"
   },
