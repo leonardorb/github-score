@@ -3,3 +3,5 @@
 .npm-debug.log
 /src/assets/.sass-cache
 gulpfile.js
+/src/assets/css/*.css
+/src/assets/js/*.js
