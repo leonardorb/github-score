@@ -18,7 +18,7 @@ What's your GitHub score?
 
 ### Get your score!
 
-    $ node src/assets/js/score.js leonardorb hugw tspaulino dpsxp
+    $ node src/assets/js/score.js leonardorb hugw tspaulino suissa zenorocha ebidel
 
 
 ![](http://d.pr/i/11uvK+)
