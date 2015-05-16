@@ -83,7 +83,7 @@ class GitHub
 
   getNumberOfContributions: ($, cb = ->) ->
     [_$, _cb] = [$, cb]
-    contributionsText = _$(_$('.contrib-number')[0]).text()
+    contributionsText = _$(_$('.contrib-number')[0]).text().replace ',',''
     numberRegex = /\d+/
     contributions = parseInt contributionsText.match(numberRegex)[0]
     _cb contributions
