@@ -6,9 +6,9 @@ class GitHub
   constructor: ->
     @baseURL = 'https://www.github.com'
     @contributionsImportance = 1
-    @followersImportance = 2.75
     @longestStreakImportance = 3.5
     @currentStreakImportance = 7.25
+    @followersFactor = 0.0015
     @scoreReport = '\n'
 
   generateScoreReport: (users, cb) ->
@@ -65,11 +65,11 @@ class GitHub
 
   generateUserScore: (user, cb = ->) ->
     [_user, _cb] = [user, cb]
-    followersScore = +(@followersImportance * _user.followers).toFixed 2
     contributionsScore = +(@contributionsImportance * _user.contributions).toFixed 2
     longestStreakScore = +(@longestStreakImportance * _user.longestStreak).toFixed 2
     currentStreakScore = +(@currentStreakImportance * _user.currentStreak).toFixed 2
-    fullScore = (parseFloat(followersScore + contributionsScore + longestStreakScore + currentStreakScore)).toFixed 2
+    followersFactorScore = +((@followersFactor * _user.followers) + 1)
+    fullScore = (parseFloat((contributionsScore + longestStreakScore + currentStreakScore) * followersFactorScore)).toFixed 2
     _cb fullScore
 
   getURLData: (user, cb = ->) ->
