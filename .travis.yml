@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "0.12.3"
+before_script:
+  - gem install sass
+  - gem install compass
+  - npm install -g npm-install
+  - npm install -g coffee
+  - npm install -g gulp
+  - npm install
+  - coffee -c --no-header gulp.coffee
+  - coffee -c --no-header test_runner.coffee
+  - gulp
+
+script: npm test
