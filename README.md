@@ -1,4 +1,4 @@
-# GitHub Score
+# GitHub Score [![Build Status](https://travis-ci.org/leonardorb/github_score.svg?branch=master)](https://travis-ci.org/leonardorb/github_score)
 What's your GitHub score?
 
 Current formula: `((C*1)+(LS*3.5)+(CS*7.25))*((F*0.0015)+1)`, where:
