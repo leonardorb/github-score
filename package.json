@@ -17,6 +17,11 @@
     "gulp": "^3.8.11",
     "gulp-util": "^3.0.4",
     "gulp-coffee": "^2.3.1",
-    "gulp-compass": "^2.0.4"
+    "gulp-compass": "^2.0.4",
+    "chai": "^2.3.0",
+    "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "test": "node test_runner.js"
   }
 }
