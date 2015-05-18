@@ -4,9 +4,13 @@ What's your GitHub score?
 Current formula: `((C*1)+(LS*3.5)+(CS*7.25))*((C/Y)*(F*0.0015))`, where:
 
 `C` = Contributions
+
 `LS` = Longest Streak
+
 `CS` = Current Streak
+
 `Y` = Year Period in Days (365)
+
 `F` = Followers
 
 ## How to use it
