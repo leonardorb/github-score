@@ -8,7 +8,7 @@ before_script:
   - npm install -g coffee
   - npm install -g gulp
   - npm install
-  - coffee -c --no-header gulp.coffee
+  - coffee -c --no-header gulpfile.coffee
   - coffee -c --no-header test_runner.coffee
   - gulp
 
