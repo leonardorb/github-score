@@ -15,9 +15,10 @@ destinations =
   specs: 'test'
 
 gulp.task 'watch', ->
-  gulp.watch sources.coffee, ['coffee']
-  gulp.watch sources.sass, ['compass']
-  gulp.watch sources.specs, ['specs']
+  if !process.env.TRAVIS?
+    gulp.watch sources.coffee, ['coffee']
+    gulp.watch sources.sass, ['compass']
+    gulp.watch sources.specs, ['specs']
 
 gulp.task 'coffee', ->
   gulp.src sources.coffee
