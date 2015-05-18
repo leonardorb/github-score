@@ -6,9 +6,11 @@ class GitHub
   constructor: ->
     @baseURL = 'https://www.github.com'
     @contributionsImportance = 1
+    # assuming that we always have a perfect year here
+    @contributionsInterval = 365
     @longestStreakImportance = 3.5
     @currentStreakImportance = 7.25
-    @followersFactor = 0.0015
+    @followersFactor = 0.0001
     @scoreReport = '\n'
 
   generateScoreReport: (users, cb) ->
@@ -65,12 +67,35 @@ class GitHub
 
   generateUserScore: (user, cb = ->) ->
     [_user, _cb] = [user, cb]
-    contributionsScore = +(@contributionsImportance * _user.contributions).toFixed 2
-    longestStreakScore = +(@longestStreakImportance * _user.longestStreak).toFixed 2
-    currentStreakScore = +(@currentStreakImportance * _user.currentStreak).toFixed 2
-    followersFactorScore = +((@followersFactor * _user.followers) + 1)
+    contributionsScore = @generateContributionsScore _user.contributions
+    longestStreakScore = @generateLongestStreakScore _user.longestStreak
+    currentStreakScore = @generateCurrentStreakScore _user.currentStreak
+    followersFactorScore = @generateUserFollowersFactor _user
     fullScore = (parseFloat((contributionsScore + longestStreakScore + currentStreakScore) * followersFactorScore)).toFixed 2
     _cb fullScore
+
+  generateContributionsScore: (contributions) ->
+    _contributions = contributions
+    +(@contributionsImportance * _contributions).toFixed 2
+
+  generateLongestStreakScore: (longestStreak) ->
+    _longestStreak = longestStreak
+    +(@longestStreakImportance * _longestStreak).toFixed 2
+
+  generateCurrentStreakScore: (currentStreak) ->
+    _currentStreak = currentStreak
+    +(@currentStreakImportance * _currentStreak).toFixed 2
+
+  generateAverageContributionsIndex: (contributions) ->
+    _contributions = contributions
+    # using the year interval here
+    (_contributions/@contributionsInterval) + 1
+
+  generateUserFollowersFactor: (user) ->
+    _user = user
+    # using the year interval here
+    averageContributionsIndex = @generateAverageContributionsIndex _user.contributions
+    userFollowersFactor = (averageContributionsIndex * (user.followers * @followersFactor)) + 1
 
   getURLData: (user, cb = ->) ->
     [self, _user, _cb] = [@, user, cb]

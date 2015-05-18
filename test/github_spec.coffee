@@ -34,8 +34,8 @@ describe 'GitHub', ->
     it 'should have a Followers rank factor', ->
       expect(github).to.have.property 'followersFactor'
 
-    it 'should have a Followers factor with 0.0015 points of influence in the rank', ->
-      expect(github.followersFactor).to.equal 0.0015
+    it 'should have a Followers factor with 0.0001 points of influence in the rank', ->
+      expect(github.followersFactor).to.equal 0.0001
 
     it 'should have an initial Score Report', ->
       expect(github).to.have.property 'scoreReport'
