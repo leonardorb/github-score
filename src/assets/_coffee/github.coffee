@@ -10,7 +10,7 @@ class GitHub
     @contributionsInterval = 365
     @longestStreakImportance = 3.5
     @currentStreakImportance = 7.25
-    @followersFactor = 0.0001
+    @followersFactor = 0.00015
     @scoreReport = '\n'
 
   generateScoreReport: (users, cb) ->
