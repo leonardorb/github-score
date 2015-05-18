@@ -19,6 +19,12 @@ describe 'GitHub', ->
     it 'should have a Contributions factor with 1 point of influence in the rank', ->
       expect(github.contributionsImportance).to.equal 1
 
+    it 'should have a Contributions Interval factor', ->
+      expect(github).to.have.property 'contributionsInterval'
+
+    it 'should have a Contributions Interval factor as 365 (Perfect year interval)', ->
+      expect(github.contributionsInterval).to.equal 365
+
     it 'should have a Longest Streak rank factor', ->
       expect(github).to.have.property 'longestStreakImportance'
 
