@@ -33,7 +33,7 @@ Current formula: `((C*1)+(LS*3.5)+(CS*7.25))*((C/Y)*(F*0.0015))`, where:
     $ node src/assets/js/score.js leonardorb hugw tspaulino suissa zenorocha ebidel
 
 
-![](http://d.pr/i/1ckww+)
+![](http://d.pr/i/1g8mw+)
 
 
 ## Running Tests
