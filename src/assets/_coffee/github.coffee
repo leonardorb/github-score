@@ -60,7 +60,7 @@ class GitHub
                 userData.score = _score
                 index++
                 if index is users.length
-                  usersData = (_.sortBy usersData, (user) -> parseFloat user.score).reverse()
+                  usersData = (_.sortBy usersData, (user) -> +user.score).reverse()
                   _cb usersData
                 else
                   self.generateUsersData index, _users, _cb, usersData
