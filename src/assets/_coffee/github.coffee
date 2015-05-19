@@ -54,6 +54,16 @@ class GitHub
       else
         self.generateUsersData index, _users, _cb, usersData
 
+  getURLData: (user, cb = ->) ->
+    [self, _user, _cb] = [@, user, cb]
+    userPath = @baseURL + '/' + _user
+    request userPath, (error, response, body) ->
+      $ = cheerio.load body
+      if $('#parallax_error_text')[0]?
+        console.log "ERROR: user '#{_user}' does not exist on GitHub."
+      else
+        _cb $
+
   generateUserScore: (user) ->
     _user = user
     contributionsScore = @generateContributionsScore _user.contributions
@@ -85,16 +95,6 @@ class GitHub
     # using the year interval here
     averageContributionsIndex = @generateAverageContributionsIndex _user.contributions
     userFollowersFactor = (averageContributionsIndex * (user.followers * @followersFactor)) + 1
-
-  getURLData: (user, cb = ->) ->
-    [self, _user, _cb] = [@, user, cb]
-    userPath = @baseURL + '/' + _user
-    request userPath, (error, response, body) ->
-      $ = cheerio.load body
-      if $('#parallax_error_text')[0]?
-        console.log "ERROR: user '#{_user}' does not exist on GitHub."
-      else
-        _cb $
 
   getNumberOfFollowers: ($) ->
     _$ = $
