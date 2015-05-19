@@ -18,19 +18,13 @@ class GitHub
     @generateUsersData 0, _users, (usersData) ->
       _.each usersData, (user, count) ->
         _count = count + 1
-        self.reportLineUsername user.username, _count, (lineUsername) ->
-          _lineUsername = lineUsername
-          self.reportLineFollowers user.followers, (lineFollowers) ->
-            _lineFollowers = lineFollowers
-            self.reportLineContributions user.contributions, (lineContributions) ->
-              _lineContributions = lineContributions
-              self.reportLineLongestStreak user.longestStreak, (lineLongestStreak) ->
-                _lineLongestStreak = lineLongestStreak
-                self.reportLineCurrentStreak user.currentStreak, (lineCurrentStreak) ->
-                  _lineCurrentStreak = lineCurrentStreak
-                  self.reportLineScore user.score, (lineScore) ->
-                    _lineScore = lineScore
-                    self.scoreReport = self.scoreReport + _lineUsername + _lineFollowers + _lineContributions + _lineLongestStreak + _lineCurrentStreak + _lineScore + '\n\n'
+        lineUsername = self.reportLineUsername user, _count
+        lineFollowers = self.reportLineFollowers user.followers
+        lineContributions = self.reportLineContributions user.contributions
+        lineLongestStreak = self.reportLineLongestStreak user.longestStreak
+        lineCurrentStreak = self.reportLineCurrentStreak user.currentStreak
+        lineScore = self.reportLineScore user.score
+        self.scoreReport = self.scoreReport + lineUsername + lineFollowers + lineContributions + lineLongestStreak + lineCurrentStreak + lineScore + '\n\n'
 
       _cb self.scoreReport
 
@@ -38,41 +32,36 @@ class GitHub
     [self, _index, _users, _cb] = [@, index, users, cb]
     @getURLData _users[index], ($) ->
       _$ = $
-      self.getNumberOfFollowers _$, (followers) ->
-        _followers = followers
-        self.getNumberOfContributions _$, (contributions) ->
-          _contributions = contributions
-          self.getLongestStreak _$, (longestStreak) ->
-            _longestStreak = longestStreak
-            self.getCurrentStreak _$, (currentStreak) ->
-              _currentStreak = currentStreak
+      followers = self.getNumberOfFollowers _$
+      contributions = self.getNumberOfContributions _$
+      longestStreak = self.getLongestStreak _$
+      currentStreak = self.getCurrentStreak _$
 
-              userData = {}
-              userData.username = _users[index]
-              userData.followers = _followers
-              userData.contributions = _contributions
-              userData.longestStreak = _longestStreak
-              userData.currentStreak = _currentStreak
-              usersData.push userData
+      userData = {}
+      userData.username = _users[index]
+      userData.followers = followers
+      userData.contributions = contributions
+      userData.longestStreak = longestStreak
+      userData.currentStreak = currentStreak
+      usersData.push userData
 
-              self.generateUserScore userData, (score) ->
-                _score = score
-                userData.score = _score
-                index++
-                if index is users.length
-                  usersData = (_.sortBy usersData, (user) -> +user.score).reverse()
-                  _cb usersData
-                else
-                  self.generateUsersData index, _users, _cb, usersData
+      score = self.generateUserScore userData
+      userData.score = score
+      index++
+      if index is users.length
+        usersData = (_.sortBy usersData, (user) -> +user.score).reverse()
+        _cb usersData
+      else
+        self.generateUsersData index, _users, _cb, usersData
 
-  generateUserScore: (user, cb = ->) ->
-    [_user, _cb] = [user, cb]
+  generateUserScore: (user) ->
+    _user = user
     contributionsScore = @generateContributionsScore _user.contributions
     longestStreakScore = @generateLongestStreakScore _user.longestStreak
     currentStreakScore = @generateCurrentStreakScore _user.currentStreak
     followersFactorScore = @generateUserFollowersFactor _user
     fullScore = (parseFloat((contributionsScore + longestStreakScore + currentStreakScore) * followersFactorScore)).toFixed 2
-    _cb fullScore
+    fullScore
 
   generateContributionsScore: (contributions) ->
     _contributions = contributions
@@ -107,68 +96,68 @@ class GitHub
       else
         _cb $
 
-  getNumberOfFollowers: ($, cb = ->) ->
-    [_$, _cb] = [$, cb]
+  getNumberOfFollowers: ($) ->
+    _$ = $
     followers = _$(_$('.vcard-stat-count')[0]).text()
     if followers.indexOf('k') is -1
       followers = parseInt followers
     else
       numberRegex = /(.*)k/
       followers = (followers.match(numberRegex)[1])*1000
-    _cb followers
+    followers
 
-  getNumberOfContributions: ($, cb = ->) ->
-    [_$, _cb] = [$, cb]
+  getNumberOfContributions: ($) ->
+    _$ = $
     contributionsText = _$(_$('.contrib-number')[0]).text().replace ',',''
     numberRegex = /\d+/
     contributions = parseInt contributionsText.match(numberRegex)[0]
-    _cb contributions
+    contributions
 
-  getLongestStreak: ($, cb = ->) ->
-    [_$, _cb] = [$, cb]
+  getLongestStreak: ($) ->
+    _$ = $
     streakText = _$(_$('.contrib-number')[1]).text()
     numberRegex = /\d+/
     streak = parseInt streakText.match(numberRegex)[0]
-    _cb streak
+    streak
 
-  getCurrentStreak: ($, cb = ->) ->
-    [_$, _cb] = [$, cb]
+  getCurrentStreak: ($) ->
+    _$ = $
     streakText = _$(_$('.contrib-number')[2]).text()
     numberRegex = /\d+/
     streak = parseInt streakText.match(numberRegex)[0]
-    _cb streak
+    streak
 
-  reportLineUsername: (username, count, cb = ->) ->
-    [_username, _cb] = [username, cb]
-    _cb '[' + count + '] - ' + _username.toUpperCase() + '\n'
+  reportLineUsername: (user, count) ->
+    [_user, _count] = [user, count]
+    '[' + _count + '] - ' + _user.username.toUpperCase() + '\n'
 
-  reportLineFollowers: (followers, cb = ->) ->
-    [_followers, _cb] = [followers, cb]
+  reportLineFollowers: (followers) ->
+    [_followers] = [followers]
     if _followers > 1
       if _followers >= 1000 then _followers = _followers + '+ followers | ' else _followers = _followers + ' followers | '
     else
       _followers = _followers + ' follower\n'
-    _cb _followers
+    _followers
 
-  reportLineContributions: (contributions, cb = ->) ->
-    [_contributions, _cb] = [contributions, cb]
+  reportLineContributions: (contributions) ->
+    [_contributions] = [contributions]
     if _contributions > 1 then _contributions = _contributions + ' contributions\n' else _contributions = _contributions + ' contribution\n'
-    _cb _contributions
+    _contributions
 
-  reportLineLongestStreak: (longestStreak, cb = ->) ->
-    [_longestStreak, _cb] = [longestStreak, cb]
+  reportLineLongestStreak: (longestStreak) ->
+    [_longestStreak] = [longestStreak]
     _preStreak = 'Longest streak: '
     if _longestStreak > 1 then _longestStreak = _longestStreak + ' days | ' else _longestStreak = _longestStreak + ' day | '
-    _cb _preStreak + _longestStreak
+    _preStreak + _longestStreak
 
-  reportLineCurrentStreak: (currentStreak, cb = ->) ->
-    [_currentStreak, _cb] = [currentStreak, cb]
+  reportLineCurrentStreak: (currentStreak) ->
+    [_currentStreak] = [currentStreak]
     _preStreak = 'Current streak: '
     if _currentStreak > 1 then _currentStreak = _currentStreak + ' days\n' else _currentStreak = _currentStreak + ' day\n'
-    _cb _preStreak + _currentStreak
+    _preStreak + _currentStreak
 
-  reportLineScore: (score, cb = ->) ->
-    [_score, _cb] = [score, cb]
-    _cb '# ' + _score + ' points #'
+  reportLineScore: (score) ->
+    [_score] = [score]
+    '# ' + _score + ' points #'
 
 module.exports = GitHub
