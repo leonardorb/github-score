@@ -18,8 +18,8 @@ class GitHub
     [self, _users, _cb] = [@, users, cb]
     @generateUsersData 0, _users, (usersData) ->
       _.each usersData, (user, count) ->
-        _count = count + 1
-        lineUsername = self.reportLineUsername user, _count
+        count++
+        lineUsername = self.reportLineUsername user, count
         lineFollowers = self.reportLineFollowers user.followers
         lineContributions = self.reportLineContributions user.contributions
         lineLongestStreak = self.reportLineLongestStreak user.longestStreak
