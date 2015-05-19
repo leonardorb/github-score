@@ -1,6 +1,7 @@
 cheerio = require 'cheerio'
 _ = require 'lodash'
-request = require 'request'
+Q = require 'q'
+request = Q.denodeify require 'request'
 
 class GitHub
   constructor: ->
@@ -57,12 +58,15 @@ class GitHub
   getURLData: (user, cb = ->) ->
     [self, _user, _cb] = [@, user, cb]
     userPath = @baseURL + '/' + _user
-    request userPath, (error, response, body) ->
-      $ = cheerio.load body
+    request userPath
+    .then (response) ->
+      $ = cheerio.load response[0].body
       if $('#parallax_error_text')[0]?
         console.log "ERROR: user '#{_user}' does not exist on GitHub."
       else
         _cb $
+    .fail (error) ->
+      console.log error
 
   generateUserScore: (user) ->
     _user = user
