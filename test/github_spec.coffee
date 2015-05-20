@@ -49,3 +49,8 @@ describe 'GitHub', ->
     it 'should have an initial Score Report with a base structure', ->
       expect(github.scoreReport).to.equal '\n'
 
+  describe 'reportLineScore', ->
+    it 'should generate a report line related with the score', ->
+      reportLineScore = github.reportLineScore 100
+      expect(reportLineScore).to.equal '# 100 points #'
+

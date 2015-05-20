@@ -136,7 +136,7 @@ class GitHub
     '[' + _count + '] - ' + _user.username.toUpperCase() + '\n'
 
   reportLineFollowers: (followers) ->
-    [_followers] = [followers]
+    _followers = followers
     if _followers > 1
       if _followers >= 1000 then _followers = _followers + '+ followers | ' else _followers = _followers + ' followers | '
     else
@@ -144,24 +144,24 @@ class GitHub
     _followers
 
   reportLineContributions: (contributions) ->
-    [_contributions] = [contributions]
+    _contributions = contributions
     if _contributions > 1 then _contributions = _contributions + ' contributions\n' else _contributions = _contributions + ' contribution\n'
     _contributions
 
   reportLineLongestStreak: (longestStreak) ->
-    [_longestStreak] = [longestStreak]
+    _longestStreak = longestStreak
     _preStreak = 'Longest streak: '
     if _longestStreak > 1 then _longestStreak = _longestStreak + ' days | ' else _longestStreak = _longestStreak + ' day | '
     _preStreak + _longestStreak
 
   reportLineCurrentStreak: (currentStreak) ->
-    [_currentStreak] = [currentStreak]
+    _currentStreak = currentStreak
     _preStreak = 'Current streak: '
     if _currentStreak > 1 then _currentStreak = _currentStreak + ' days\n' else _currentStreak = _currentStreak + ' day\n'
     _preStreak + _currentStreak
 
   reportLineScore: (score) ->
-    [_score] = [score]
+    _score = score
     '# ' + _score + ' points #'
 
 module.exports = GitHub
