@@ -61,7 +61,7 @@ Current formula: `((C*1)+(LS*3.5)+(CS*7.25))*((C/Y)*((F*0.0015)+1))`, where:
 
 **The MIT License (MIT)**
 
-Copyright (c) **2015** Leonardo R. Barbosa ([rb.leonardo@gmail.com](mailto:rb.leonardo@gmail.com))
+Copyright (c) **2015** Leonardo R. Barbosa - [rb.leonardo@gmail.com](mailto:rb.leonardo@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
