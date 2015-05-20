@@ -49,6 +49,7 @@ Current formula: `((C*1)+(LS*3.5)+(CS*7.25))*((C/Y)*((F*0.0015)+1))`, where:
 ## Contributors
 
 - Leo ([github](https://github.com/leonardorb)) ([twitter](https://twitter.com/leonardorb))
+- Daniel ([github](https://github.com/dpsxp)) ([twitter](https://twitter.com/dpsxp))
 
 ## How to Contribute
 - Before you open a ticket or send a pull request, `search` for previous discussions about the same feature or issue. Add to the earlier ticket if you find one.
