@@ -49,8 +49,18 @@ describe 'GitHub', ->
     it 'should have an initial Score Report with a base structure', ->
       expect(github.scoreReport).to.equal '\n'
 
+  describe 'reportLineCurrentStreak', ->
+    describe 'for days < 2 and >= 0', ->
+      it 'should generate a current streak report line', ->
+        reportLineCurrentStreak = github.reportLineCurrentStreak 1
+        expect(reportLineCurrentStreak).to.equal 'Current streak: 1 day\n'
+    describe 'for days >= 2', ->
+      it 'should generate a current streak report line', ->
+        reportLineCurrentStreak = github.reportLineCurrentStreak 3
+        expect(reportLineCurrentStreak).to.equal 'Current streak: 3 days\n'
+
   describe 'reportLineScore', ->
-    it 'should generate a report line related with the score', ->
+    it 'should generate a score report line', ->
       reportLineScore = github.reportLineScore 100
       expect(reportLineScore).to.equal '# 100 points #'
 
