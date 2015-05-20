@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "What's your GitHub score?",
   "author": "Leo <rb.leonardo@gmail.com>",
+  "engines": {
+    "node": "0.12.x"
+  }
   "scripts": {
     "test": "node test_runner.js"
   },
