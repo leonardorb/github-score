@@ -1,7 +1,7 @@
 gulp = require 'gulp'
 gulpUtil = require 'gulp-util'
 coffee = require 'gulp-coffee'
-compass = require 'gulp-compass'
+sass = require 'gulp-sass'
 path = require 'path'
 
 sources =
@@ -17,7 +17,7 @@ destinations =
 gulp.task 'watch', ->
   if !process.env.TRAVIS?
     gulp.watch sources.coffee, ['coffee']
-    gulp.watch sources.sass, ['compass']
+    gulp.watch sources.sass, ['sass']
     gulp.watch sources.specs, ['specs']
 
 gulp.task 'coffee', ->
@@ -25,17 +25,14 @@ gulp.task 'coffee', ->
     .pipe coffee().on 'error', gulpUtil.log
     .pipe gulp.dest destinations.js
 
-gulp.task 'compass', ->
+gulp.task 'sass', ->
   gulp.src sources.sass
-    .pipe(compass
-      project: path.join __dirname, 'src/assets'
-      css: 'css'
-      sass: '_sass'
-    )
+    .pipe sass().on 'error', gulpUtil.log
+    .pipe gulp.dest destinations.css
 
 gulp.task 'specs', ->
   gulp.src sources.specs
     .pipe coffee().on 'error', gulpUtil.log
     .pipe gulp.dest destinations.specs
 
-gulp.task 'default', ['coffee', 'compass', 'specs', 'watch']
+gulp.task 'default', ['coffee', 'sass', 'specs', 'watch']
