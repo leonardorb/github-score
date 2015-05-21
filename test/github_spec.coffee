@@ -49,6 +49,20 @@ describe 'GitHub', ->
     it 'should have an initial Score Report with a base structure', ->
       expect(github.scoreReport).to.equal '\n'
 
+  describe 'reportLineFollowers', ->
+    describe 'for followers < 2 and >= 0', ->
+      it 'should generate a followers report line', ->
+        reportLineFollowers = github.reportLineFollowers 1
+        expect(reportLineFollowers).to.equal '1 follower | '
+    describe 'for followers >= 2 and < 1000', ->
+      it 'should generate a followers report line', ->
+        reportLineFollowers = github.reportLineFollowers 450
+        expect(reportLineFollowers).to.equal '450 followers | '
+    describe 'for followers >= 1000', ->
+      it 'should generate a followers report line', ->
+        reportLineFollowers = github.reportLineFollowers 1200
+        expect(reportLineFollowers).to.equal '1200+ followers | '
+
   describe 'reportLineContributions', ->
     describe 'for days < 2 and >= 0', ->
       it 'should generate a contributions report line', ->

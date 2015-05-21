@@ -140,7 +140,7 @@ class GitHub
     if _followers > 1
       if _followers >= 1000 then _followers = _followers + '+ followers | ' else _followers = _followers + ' followers | '
     else
-      _followers = _followers + ' follower\n'
+      _followers = _followers + ' follower | '
     _followers
 
   reportLineContributions: (contributions) ->
