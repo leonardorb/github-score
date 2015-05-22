@@ -64,6 +64,11 @@ describe 'GitHub', ->
         done()
       )
 
+  describe 'reportLineUsername', ->
+    it 'should generate a username report line', ->
+      reportLineUsername = github.reportLineUsername({username: 'leonardorb'}, 1)
+      expect(reportLineUsername).to.equal '[1] - LEONARDORB\n'
+
   describe 'reportLineFollowers', ->
     describe 'for followers < 2 and >= 0', ->
       it 'should generate a followers report line', ->
