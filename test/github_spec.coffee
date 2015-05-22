@@ -49,6 +49,21 @@ describe 'GitHub', ->
     it 'should have an initial Score Report with a base structure', ->
       expect(github.scoreReport).to.equal '\n'
 
+  describe 'getURLData', ->
+    it 'should return null when a user does not exist on GitHub', (done) ->
+      user = 'thisuserdoesnotexistongithub'
+      github.getURLData(user, ($) ->
+        expect($).to.not.be.nil
+        done()
+      )
+
+    it 'should return the scraped data when a user exist on GitHub', (done) ->
+      user = 'leonardorb'
+      github.getURLData(user, ($) ->
+        expect(typeof $).to.equal 'function'
+        done()
+      )
+
   describe 'reportLineFollowers', ->
     describe 'for followers < 2 and >= 0', ->
       it 'should generate a followers report line', ->

@@ -32,6 +32,9 @@ class GitHub
   generateUsersData: (index, users, cb, usersData = []) ->
     [self, _index, _users, _cb] = [@, index, users, cb]
     @getURLData _users[index], ($) ->
+      if !$?
+        console.log "#{_users[index]} does not exist on GitHub."
+        return
       _$ = $
       followers = self.getNumberOfFollowers _$
       contributions = self.getNumberOfContributions _$
@@ -62,7 +65,7 @@ class GitHub
     .then (response) ->
       $ = cheerio.load response[0].body
       if $('#parallax_error_text')[0]?
-        console.log "ERROR: user '#{_user}' does not exist on GitHub."
+        _cb null
       else
         _cb $
     .fail (error) ->
