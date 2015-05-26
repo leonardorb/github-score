@@ -19,6 +19,7 @@
     "mocha": "^2.2.5"
   },
   "scripts": {
+    "postinstall": "coffee -bc --no-header gulpfile.coffee",
     "pretest": "coffee -bc --no-header test_runner.coffee",
     "test": "node test_runner.js"
   }
