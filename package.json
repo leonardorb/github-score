@@ -17,5 +17,9 @@
     "gulp-sass": "^2.0.1",
     "gulp-util": "^3.0.4",
     "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "pretest": "coffee -bc --no-header test_runner.coffee",
+    "test": "node test_runner.js"
   }
 }
