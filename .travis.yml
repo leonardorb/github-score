@@ -6,7 +6,6 @@ before_script:
   - npm install -g coffee
   - npm install -g gulp
   - npm install
-  - coffee -c --no-header gulpfile.coffee
   - gulp
 
 script: npm test
