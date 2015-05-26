@@ -38,10 +38,6 @@ Current formula: `((C*1)+(LS*3.5)+(CS*7.25))*((C/Y)*((F*0.0015)+1))`, where:
 
 ## Running Tests
 
-### Compile your test_runner.coffee
-
-    $ coffee -bwc --no-header test_runner.coffee
-
 ### Run the tests!
 
     $ npm test
