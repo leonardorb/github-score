@@ -3,12 +3,6 @@
   "version": "0.0.1",
   "description": "What's your GitHub score?",
   "author": "Leo <rb.leonardo@gmail.com>",
-  "engines": {
-    "node": "0.12.x"
-  },
-  "scripts": {
-    "test": "node test_runner.js"
-  },
   "dependencies": {
     "lodash": "^3.8.0",
     "cheerio": "^0.19.0",
@@ -23,5 +17,10 @@
     "gulp-sass": "^2.0.1",
     "gulp-util": "^3.0.4",
     "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "postinstall": "coffee -bc --no-header gulpfile.coffee",
+    "pretest": "coffee -bc --no-header test_runner.coffee",
+    "test": "node test_runner.js"
   }
 }
