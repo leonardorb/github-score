@@ -23,10 +23,6 @@ Current formula: `((C*1)+(LS*3.5)+(CS*7.25))*((C/Y)*((F*0.0015)+1))`, where:
     $ npm install -g gulp
     $ npm install
 
-### Compile your gulpfile.coffee
-
-    $ coffee -bwc --no-header gulpfile.coffee
-
 ### Run gulp
 
     $ gulp
@@ -40,10 +36,6 @@ Current formula: `((C*1)+(LS*3.5)+(CS*7.25))*((C/Y)*((F*0.0015)+1))`, where:
 
 
 ## Running Tests
-
-### Compile your test_runner.coffee
-
-    $ coffee -bwc --no-header test_runner.coffee
 
 ### Run the tests!
 
